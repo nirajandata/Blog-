@@ -1,0 +1,30 @@
+{% extends "entries/base.html" %}
+{% block content %}
+      <!-- Blog Entries Column -->
+      <div class="col-md-8" >
+        {% for entry in blog_entries %}
+        <!-- Blog Post -->
+        <div class="card mb-4 mt-4">
+          <div class="card-body">
+            <h2 class="card-title">{{entry.entry_title}}</h2>
+            <p class="card-text">{{entry.entry_text|truncatechars:100}}</p>
+            <a href="{% url 'entry-detail' entry.pk %}" class="btn btn-primary btn-sm">Read More &rarr;</a>
+          </div>
+          <div class="card-footer text-muted">
+            Posted on {{entry.entry_date}}
+            <span class= "text-info mr-2">{{entry.entry_author}}</span>
+          </div>
+        </div>
+        {% endfor %}
+        <!-- Pagination -->
+        <ul class="pagination justify-content-center mb-4">
+          <li class="page-item">
+            <a class="page-link" href="#">&larr; Previous Page</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">Next Page &rarr;</a>
+          </li>
+        </ul>
+
+      </div>
+{% endblock %}
